@@ -1,0 +1,166 @@
+$totalColumns: 12;
+$containerWidth: 1020px;
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  max-width: $containerWidth;
+}
+
+.row {
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.row.reverse {
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.col.reverse {
+  -webkit-flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+@mixin flexGrid($suffix: false) {
+	@if($suffix) {
+		$suffix: -#{$suffix};
+	} @else {
+		$suffix: unquote('');
+	}
+
+  /* columns with auto sizing */
+  .col#{$suffix} {
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+  }
+
+  @for $i from 1 through $totalColumns {
+    .col#{$suffix}-#{$i} {
+      box-sizing: border-box;
+      -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+      padding-right: 15px;
+      padding-left: 15px;
+
+      -webkit-flex-basis: ($i / $totalColumns) * 100%;
+      -ms-flex-preferred-size: ($i / $totalColumns) * 100%;
+      flex-basis: ($i / $totalColumns) * 100%;
+      max-width: ($i / $totalColumns) * 100%;
+  	}
+
+    .col#{$suffix}-offset-#{$i} {
+      box-sizing: border-box;
+      -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+      padding-right: 15px;
+      padding-left: 15px;
+
+      margin-left: ($i / $totalColumns) * 100%;
+  	}
+  }
+
+  .start#{$suffix} {
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .center#{$suffix} {
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .end#{$suffix} {
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    text-align: end;
+  }
+
+  .top#{$suffix} {
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+
+  .middle#{$suffix} {
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .bottom#{$suffix} {
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+  }
+
+  .around#{$suffix} {
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+
+  .between#{$suffix} {
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .first#{$suffix} {
+    -webkit-order: -1;
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  .reset#{$suffix} {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+  }
+
+  .last#{$suffix} {
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+  }
+}
+
+@include flexGrid('xs');
+@media (min-width: 600px) {
+	@include flexGrid('sm');
+}
+@media (min-width: 960px) {
+	@include flexGrid('md');
+}
+@media (min-width: 1020px) {
+	@include flexGrid('lg');
+}
