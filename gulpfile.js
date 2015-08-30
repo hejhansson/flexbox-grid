@@ -48,6 +48,8 @@ gulp.task('styles', function() {
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifycss())
 	.pipe(gulp.dest('css'))
+  .pipe(size({gzip: false, showFiles: true}))
+	.pipe(size({gzip: true, showFiles: true}))
 
 	.pipe(notify("SCSS minified"));
 });

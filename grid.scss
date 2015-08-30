@@ -1,6 +1,10 @@
 $totalColumns: 12;
 $containerWidth: 1020px;
 
+* {
+  box-sizing: border-box;
+}
+
 .container {
   margin-right: auto;
   margin-left: auto;
@@ -10,7 +14,6 @@ $containerWidth: 1020px;
 }
 
 .row {
-  box-sizing: border-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -59,7 +62,6 @@ $containerWidth: 1020px;
 
   @for $i from 1 through $totalColumns {
     .col#{$suffix}-#{$i} {
-      box-sizing: border-box;
       -webkit-flex: 0 0 auto;
       -ms-flex: 0 0 auto;
       flex: 0 0 auto;
@@ -73,7 +75,6 @@ $containerWidth: 1020px;
   	}
 
     .col#{$suffix}-offset-#{$i} {
-      box-sizing: border-box;
       -webkit-flex: 0 0 auto;
       -ms-flex: 0 0 auto;
       flex: 0 0 auto;
